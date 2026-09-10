@@ -1,0 +1,33 @@
+### 공통 (bin/obj/vs 캐시) ###
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+
+### Unity 전용 (UnityProject/ 하위만 — csproj/sln은 Unity가 자동 재생성함) ###
+UnityProject/[Ll]ibrary/
+UnityProject/[Tt]emp/
+UnityProject/[Ll]ogs/
+UnityProject/[Uu]serSettings/
+UnityProject/[Mm]emoryCaptures/
+UnityProject/[Bb]uild/
+UnityProject/[Bb]uilds/
+UnityProject/*.csproj
+UnityProject/*.sln
+UnityProject/*.pidb
+UnityProject/*.booproj
+UnityProject/*.svd
+UnityProject/*.pdb
+UnityProject/*.mdb
+UnityProject/*.unityproj
+UnityProject/[Aa]ssets/AssetStoreTools*
+
+### WPF / .NET (WpfApp/) — .sln/.csproj는 그대로 커밋됨, 별도 제외 없음 ###
+
+### OS ###
+.DS_Store
+Thumbs.db
