@@ -1,3 +1,5 @@
+<img width="1254" height="1254" alt="ViDrive_icon" src="https://github.com/user-attachments/assets/ccda0555-d1b3-4d60-91db-3d25bd691b2d" />
+
 # ViDrive
 
 WPF로 조작하고 Unity로 렌더링하는 논크로마키 방식 버추얼 아바타 관리 툴
