@@ -66,12 +66,26 @@ ViDrive는 3D 캐릭터(VRM 아바타)를 쉽게 불러오고, 움직이고, 방
 | 설정/데이터 저장 | JSON 파일 (파일 시스템 기반, RDBMS 미사용) |
 | OS | Windows 10 이상 |
 
+## 설정 저장 방식
+
+아바타 옵션(위치/회전/크기 프리셋 등)이나 프로그램 설정처럼 개발 중에도 항목이 계속 추가·변경될 데이터는 RDBMS 대신 **JSON 파일 기반 파일 시스템 저장 방식**을 채택합니다.
+
+- **대상**: 아바타 Transform 프리셋, 마지막 사용 VRM 경로, 창 레이아웃 등 사용자별 설정값
+- **방식**: `System.Text.Json`으로 직렬화하여 로컬 파일(`settings.json`, `presets/*.json` 등)로 저장·로드
+- **채택 이유**:
+  - 단일 사용자 로컬 앱이라 관계형 DB의 스키마 관리·쿼리·트랜잭션이 불필요
+  - 개발 중 설정 항목이 자주 추가/변경되는데, JSON은 별도 마이그레이션 없이 유연하게 대응 가능
+  - 파일 하나로 백업, 공유, Git 버전관리(설정 예시 포함)가 간편
+  - WPF/.NET 환경에서 별도 라이브러리 없이 바로 구현 가능
+
+> WBS 상 "Transform 프리셋 저장/불러오기"(10/19~10/22, WPF 담당) 항목이 이 방식으로 구현됩니다.
+
 ## 폴더 구조
 
 ```
 ViDrive/
-├── UnityProject/     # Unity 6.3 LTS 프로젝트 — 렌더링, VRM 로드, Transform
-├── WpfApp/           # WPF .NET 8 솔루션 — UI, IPC 송신부
+├── ViDrive.Unity/    # Unity 6.3 LTS 프로젝트 — 렌더링, VRM 로드, Transform
+├── ViDrive.Wpf/      # WPF .NET 8 솔루션 — UI, IPC 송신부
 ├── docs/             # 기획서, WBS, 기술 문서
 └── README.md
 ```
@@ -91,8 +105,8 @@ ViDrive/
 git clone https://github.com/<org-or-user>/ViDrive.git
 ```
 
-- Unity 작업: `UnityProject/` 를 Unity Hub에서 프로젝트로 추가하여 엽니다.
-- WPF 작업: `WpfApp/` 안의 `.sln` 파일을 Visual Studio로 엽니다.
+- Unity 작업: `ViDrive.Unity/` 를 Unity Hub에서 프로젝트로 추가하여 엽니다.
+- WPF 작업: `ViDrive.Wpf/` 안의 `.sln` 파일을 Visual Studio로 엽니다.
 
 ## 팀 구성
 
